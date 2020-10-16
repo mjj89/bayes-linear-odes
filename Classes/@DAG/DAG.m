@@ -409,7 +409,7 @@ classdef DAG
         %% Maximum cardinality search
         function [lbl,ord] = MaxCardinality(obj,A)
             % MaxCardinality: carry out maximum cardianlity search, and
-            % report ordering
+            % report node labelling
             
             % init
             ord = nan(obj.n,1);
@@ -443,8 +443,8 @@ classdef DAG
                         warning('Not all neighbours are neighbours.')
                     end
                 end
-            end
-        end
+            end % i
+        end % MaxCardinality
         
         %% Find the cliques
         function [C,A] = Cliques(obj)

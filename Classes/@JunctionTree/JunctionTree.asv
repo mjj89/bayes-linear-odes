@@ -128,7 +128,7 @@ classdef JunctionTree
             % - card: [obj.G.n x 1] array: labelling calculated from max.
             %   cardinality search.
             % OUTPUTS:
-            % - obj: [1 x 1] JunctionTree: with cliques sorted.
+            % - obj: []
             
             % loop over cliques
             imx = nan(obj.n,1);
@@ -185,12 +185,6 @@ classdef JunctionTree
         function obj = Neighbourhood(obj)
             % Neighbourhood: find neighbourhood structure of the juncion
             % tree
-            %
-            % INPUTS:
-            % - obj: [1 x 1] JunctionTree.
-            % OUTPUTS:
-            % - obj: updated with neighbourhood information for the
-            %   cliques.
             
             % output
             fprintf('Finding neighbourhood structure...\n')
@@ -198,7 +192,7 @@ classdef JunctionTree
             % initialise neighbourhood fields
             for i = 1:obj.n
                 obj.C(i).ngb = [];
-            end % i
+            end
             
             % loop over cliques
             for i = 2:obj.n
@@ -220,7 +214,7 @@ classdef JunctionTree
                         fprintf('\n')
                     end
                 end
-            end % i
+            end
             
             % output
             fprintf('Neighbourhood structure identified.\n')
@@ -229,5 +223,5 @@ classdef JunctionTree
         %% Sequential adjust
         obj = SequentialAdjust(obj,D,Var_e,id)
     end % methods
-end % JunctionTree
+end
 

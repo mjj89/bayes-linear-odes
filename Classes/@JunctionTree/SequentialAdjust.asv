@@ -247,14 +247,9 @@ function pob = AdjustCliques(obj,pob,trj,Di,E_Di,iVar_Di)
 %   gives a fixed copy of the prior moments.
 % - pob: [1 x 1] JunctionTree: copy of junction tree, where clique moments
 %   are iteratively updated.
-% - trj: [1 x 1] struct: current trajectory state.
-% - Di: [sum(obj.G.v(id).dm) x 1] array: observed data for adjustment.
-% - E_Di: [sum(obj.G.v(id).dm) x 1] array: prior data expectation.
-% - iVar_Di: [sum(obj.G.v(id).dm) x sum(obj.G.v(id).dm)] array: inverse
-%   prior covariance matrix for the data.
+
 % OUTPUTS:
-% - pob: [1 x 1] JunctionTree: with clique moments for the current state
-%   updated.
+% - pob
 
 % loop over cliques
 for iC = 1:numel(trj.clq)

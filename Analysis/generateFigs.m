@@ -1,5 +1,4 @@
-% 04/10/2020: re-generate the figures for the simple trajectory analysis in
-% response to the review
+% 16/10/2020: generate the figures for Bayes linear ODE paper
 
 clear
 close all
@@ -9,14 +8,16 @@ set(0,'defaultfigurewindowstyle','docked')
 
 % add path to classes
 addpath('../Classes')
-addpath('C:\Users\Matthew.M.Jones2\LocalData\ExtremesCode\E_Code')
-
-% picture save directory
-% PicDrc = 'C:\Users\Matthew.M.Jones2\OneDrive - Shell\Documents\Articles\ODEPaper\Paper_V5_CSDAReview\Figs_Updated';
-PicDrc = cd;
 
 % figure save flag
 save_on = false;
+
+if save_on
+    % add path to figure save code
+    addpath('C:\Users\Matthew.M.Jones2\LocalData\ExtremesCode\E_Code')
+    % figure save directory
+    PicDrc = 'C:\Users\Matthew.M.Jones2\OneDrive - Shell\Documents\Articles\ODEPaper\Paper_V5_CSDAReview\Figs_Updated';
+end
 
 %% Control parameters for the inference scheme
 
