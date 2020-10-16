@@ -12,7 +12,11 @@ addpath('../Classes')
 addpath('C:\Users\Matthew.M.Jones2\LocalData\ExtremesCode\E_Code')
 
 % picture save directory
-PicDrc = 'C:\Users\Matthew.M.Jones2\OneDrive - Shell\Documents\Articles\ODEPaper\Paper_V5_CSDAReview\Figs_Updated';
+% PicDrc = 'C:\Users\Matthew.M.Jones2\OneDrive - Shell\Documents\Articles\ODEPaper\Paper_V5_CSDAReview\Figs_Updated';
+PicDrc = cd;
+
+% figure save flag
+save_on = false;
 
 %% Control parameters for the inference scheme
 
@@ -379,7 +383,9 @@ xlabel('Time (s)')
 ylabel('z(t) (m)')
 set(gca,'fontsize',14)
 % save
-savePics(fullfile(PicDrc,'Fig7181'),9,6)
+if save_on
+    savePics(fullfile(PicDrc,'Fig7181'),9,6)
+end
 
 % Figure 2: plot the 
 figure(2)
@@ -426,4 +432,6 @@ xlabel('\gamma{} (s^{-1})')
 ylabel('du/dt(t_0) (m/s)')
 set(gca,'fontsize',14)
 % save
-savePics(fullfile(PicDrc,'Fig7183'),9,6)
+if save_on
+    savePics(fullfile(PicDrc,'Fig7183'),9,6)
+end
