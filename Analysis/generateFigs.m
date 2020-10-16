@@ -63,6 +63,7 @@ sig = 1e-1;
 
 % generate trajectories
 [u,uh,eta] = Slv.simulate_trajectory(gam,du0,N_u,true);
+% add on noise for initial state
 u(:,1) = 1e-4.*randn(N_u,1);
 
 %% Specify the DAG
