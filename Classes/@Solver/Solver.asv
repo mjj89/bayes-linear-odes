@@ -282,7 +282,7 @@ classdef Solver
             % E[b]
             obj.E_b = obj.Var_b*(G'*((1./Var_eta).*E_eta));
             
-            % estimate of marginal variance for residual
+            % estimate of marginal 
             obj.V_eta = var((E_eta - G*obj.E_b)./sqrt(phi_pr.dt));
             
             %----------------------------------

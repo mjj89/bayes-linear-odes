@@ -10,7 +10,7 @@ set(0,'defaultfigurewindowstyle','docked')
 addpath('../Classes')
 
 % figure save flag
-save_on = false;
+save_on = true;
 
 if save_on
     % add path to figure save code
@@ -141,7 +141,7 @@ for iT = 1:Slv.N_t
     if iT==1
         Pa{nd_ct} = [1;2];
     else
-        Pa{nd_ct} = [1;nd_ct-3];
+        Pa{nd_ct} = [1;nd_ct-3;nd_ct-4];
     end
     % get covariance of parameters
     E{nd_ct} = mean(eta(:,iT));
@@ -149,6 +149,9 @@ for iT = 1:Slv.N_t
     % covariance with parents
     Cov{nd_ct,Pa{nd_ct}(1)} = (eta(:,iT)-mean(eta(:,iT)))'*(prm-mean(prm))./N_u;
     Cov{nd_ct,Pa{nd_ct}(2)} = (eta(:,iT)-mean(eta(:,iT)))'*(u(:,iT)-mean(u(:,iT)))./N_u;
+    if iT>1
+        Cov{nd_ct,Pa{nd_ct}(3)} = (eta(:,iT)-mean(eta(:,iT)))'*(eta(:,iT-1)-mean(eta(:,iT-1)))./N_u;
+    end
     % label
     Lbl{nd_ct} = sprintf('eta_%g',iT);
     % data
