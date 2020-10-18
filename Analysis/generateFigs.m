@@ -10,7 +10,7 @@ set(0,'defaultfigurewindowstyle','docked')
 addpath('../Classes')
 
 % figure save flag
-save_on = true;
+save_on = false;
 
 if save_on
     % add path to figure save code
@@ -18,6 +18,10 @@ if save_on
     % figure save directory
     PicDrc = 'C:\Users\Matthew.M.Jones2\OneDrive - Shell\Documents\Articles\ODEPaper\Paper_V5_CSDAReview\Figs_Updated';
 end
+
+% if required: set random number generator seed
+% not necessary, but ensures consistency of figures produced.
+rng(0)
 
 %% Control parameters for the inference scheme
 

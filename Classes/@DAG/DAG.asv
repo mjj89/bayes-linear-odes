@@ -96,15 +96,12 @@ classdef DAG
         %% Numerically compute covariances
         function Cov = CovarianceNumerical(obj,A,plen)
             % CovarianceNumerical: compute relevant covariances from the
-            % original trajetory samples.
+            % original trajetory samples
             % 
             % INPUTS:
-            % - A: [n x n] array: adjacency matrix for the graph.
-            % - plen: [1 x 1] scalar: maximum path length for computing
-            %   covariances.
+            % - A: []
             % OUTPUTS:
-            % - Cov: [n x n] cell array: covariances between paris of
-            %   vertices (with appropriate sub-division into variables).
+            % - 
             
             % output
             fprintf('Computing covariances...\n')
@@ -149,11 +146,6 @@ classdef DAG
         function A = Moralize(obj)
             % Moralize: compute adjacency matrix for the moral graph
             % associated with the DAG
-            %
-            % INPUTS:
-            % - obj: [1 x 1] DAG object.
-            % OUTPUTS:
-            % - A: [n x n] array: adjacency matrix for the moralized graph.
             
             % output
             fprintf('Starting moralization...\n')
@@ -174,8 +166,8 @@ classdef DAG
                             A(Pai(j),Pai(k)) = 1;
                             A(Pai(k),Pai(j)) = 1;
                         end
-                    end % k
-                end % j
+                    end
+                end
                 % output
                 if rem(i,10)==0
                     fprintf('#')
@@ -183,7 +175,7 @@ classdef DAG
                         fprintf('\n')
                     end
                 end
-            end % i
+            end
             
             % output
             fprintf('Moralization computed.\n')
@@ -192,14 +184,10 @@ classdef DAG
         %% Triangulate the moralized graph
         function A = Triangulate(obj)
             % Triangulate: compute the adjacency matrix for the
-            % triangulated, moral graph associated with the DAG.
+            % triangulated, moral graph associated
             % (Elimination game: Heggernes [2005])
-            %
-            % INPUTS:
-            % - obj: [1 x 1] DAG object.
-            % OUTPUTS:
-            % - A: [n x n] array: adjacency matrix for the triangulated,
-            %   moralized graph.
+            % ToDo: maybe investigate algorithms which find minimal
+            % triangulations
             
             % output
             fprintf('Starting triangulation...\n')
@@ -244,7 +232,7 @@ classdef DAG
                         fprintf('\n')
                     end
                 end
-            end % i
+            end
             
             % add in union of F^{i} edges
             rA = A(idx,idx);
@@ -264,13 +252,7 @@ classdef DAG
         %% LB-triangulation algorithm (Heggerness et al., [2010])
         function A = LBTriangulate(obj)
             % LBTriangulate: Lekkerkerker and Boland triangulation of the
-            % DAG.
-            % 
-            % INPUTS:
-            % - obj: [1 x 1] DAG object.
-            % OUTPUTS:
-            % - A: [n x n] array: adjacency matrix for the triangulated,
-            %   moralized graph.
+            % DAG
             
             % output
             fprintf('Starting triangulation...\n')
@@ -349,15 +331,6 @@ classdef DAG
         function [lbl,ord] = MaxCardinality(obj,A)
             % MaxCardinality: carry out maximum cardianlity search, and
             % report node labelling
-            %
-            % INPUTS:
-            % - A: [n x n] array: adjacency matrix associated with the
-            %   triangulated moral graph.
-            % OUTPUTS:
-            % - lbl: [n x 1] integer array: label associated with each of
-            %   the vertices in the DAG.
-            % - ord: [n x 1] integer array: original variable indices in
-            %   DAG ordered according to the labelling found.
             
             % init
             ord = nan(obj.n,1);
@@ -398,15 +371,6 @@ classdef DAG
         function [C,A] = Cliques(obj)
             % Cliques: find the cliqies associated with the DAG
             % (Algorithm due to Bron & Kerbosch [1973])
-            % 
-            % INPUTS:
-            % - obj: [1 x 1] DAG object.
-            % OUTPUTS:
-            % - C: [N_Clq x 1] cell array: list of cliques: each cell
-            %   contains the indices of the variables associated with the
-            %   clique.
-            % - A: [n x n] array: adjacency matrix for triangulated moral
-            %   graph.
             
             % output
             fprintf('Starting clique finder...\n')
@@ -430,13 +394,7 @@ classdef DAG
         
         %% Recursive Bron-Kerbosch function
         function C = BronKerbosch(obj,R,P,X,C,A)
-            % BronKerbosch: recursive sub-function for the Bron Kerbosch
-            % clique identification algorithm.
-            % 
-            % INPUTS:
-            % - 
-            % OUTPUTS:
-            % - 
+            % BronKerbosch: recursive fucntion to identify cliques
             
             % # vertices
             n  = numel(P);
@@ -464,7 +422,7 @@ classdef DAG
                     X = unique([X;P(1)]);
                     % set P <- P \ v_i
                     P(1) = [];
-                end % i
+                end
             end
         end % BronKerbosch
     end % methods (Static)
