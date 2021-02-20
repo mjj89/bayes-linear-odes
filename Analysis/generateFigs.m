@@ -9,16 +9,6 @@ set(0,'defaultfigurewindowstyle','docked')
 % add path to classes
 addpath('../Classes')
 
-% figure save flag
-save_on = false;
-
-if save_on
-    % add path to figure save code
-    addpath('C:\Users\Matthew.M.Jones2\LocalData\ExtremesCode\E_Code')
-    % figure save directory
-    PicDrc = 'C:\Users\Matthew.M.Jones2\OneDrive - Shell\Documents\Articles\ODEPaper\Paper_V5_CSDAReview\Figs_Updated';
-end
-
 % if required: set random number generator seed
 % not necessary, but ensures consistency of figures produced.
 rng(0)
@@ -390,10 +380,6 @@ legend(Lgd,'location','best')
 xlabel('Time (s)')
 ylabel('z(t) (m)')
 set(gca,'fontsize',14)
-% save
-if save_on
-    savePics(fullfile(PicDrc,'Fig7181'),9,6)
-end
 
 % Figure 2: plot the 
 figure(2)
@@ -439,7 +425,3 @@ box on
 xlabel('\gamma{} (s^{-1})')
 ylabel('du/dt(t_0) (m/s)')
 set(gca,'fontsize',14)
-% save
-if save_on
-    savePics(fullfile(PicDrc,'Fig7183'),9,6)
-end
