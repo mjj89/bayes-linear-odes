@@ -1,6 +1,9 @@
 classdef JunctionTree
     % JunctionTree: converts supplied DAG into a junction tree, and carries
     % out Bayes linear analysis on the junction tree.
+    %
+    % Procedure for conversion of a DAG to a junction tree described in
+    % Appendix B.3 of the manuscript.
     
     %% Properties
     properties

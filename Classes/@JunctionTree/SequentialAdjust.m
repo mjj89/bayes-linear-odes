@@ -5,6 +5,10 @@ function obj = SequentialAdjust(obj,D,id)
 % a vector (id) of the node indices of the data points (into the original
 % DAG).
 %
+% Adjustment of moments on a Junction tree described in Appendix B.3 of the
+% article, illustrated in a simple example in Appendix B.4, and described
+% for a trajectory ODE example in Section 5.2.
+%
 % INPUTS:
 % - obj: [1 x 1] JunctionTree object: junction tree model to be adjusted.
 % - D: [N_D x 1] cell array: data for the adjustment (each supplied data

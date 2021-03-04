@@ -1,6 +1,11 @@
 classdef Solver
     % Solver: class implementing the solver for the projectile trajectory
     % example, and the numerical discrepancy model fitting.
+    %
+    % Details of the example are outlined in Section 5 of the article.
+    % Model specification outlined in Section 3 of the article.
+    % Prior moment specification and adjustment procedure outlined in
+    % Section 4 of the article.
     
     properties
         dt              % [(N_t-1) x 1] scalar: time-step
@@ -164,6 +169,9 @@ classdef Solver
             % bl_update_eta(.): carry out Bayes linear update of the model
             % parameters for the discrepancy model.
             %
+            % Numerical discrepancy model and fitting procedure outlined in
+            % Section 4.1 and appendix D of the article.
+            %
             % INPUTS:
             % - F: [N_D x 1] array: data for adjustment.
             % - phi: [1 x 1] struct: training data inputs. Containts
@@ -199,6 +207,9 @@ classdef Solver
         function [EF_eta,VarF_eta] = bl_predict_eta(obj,phi)
             % bl_predict_eta(.): generate predictions from the fitted 
             % numerical discrepancy model.
+            %
+            % Numerical discrepancy model and fitting procedure outlined in
+            % Section 4.1 and appendix D of the article.
             %
             % INPUTS:
             % - phi: [1 x 1] struct: prediction inputs. Containts fields
@@ -249,6 +260,9 @@ classdef Solver
             % discrepancy model fit, compute the adjusted parameters, and
             % test the model on the validation data set.
             %
+            % Numerical discrepancy model fitting procedure described in
+            % Section 4.1 and Appendix D of the article.
+            %
             % INPUTS:
             % - N_Smp: [1 x 1] scalar: number of samples to generate for
             %   each input parameter specification.
@@ -260,7 +274,7 @@ classdef Solver
             % - obj: [1 x 1] Solver: updated with discrepancy model fit
             %   parameters.
             
-            % generate data fo initial prior setting
+            % generate data for initial prior setting
             [u_coarse_pr,u_acc_pr,phi_pr] = obj.gen_data(N_Train,50,N_Smp);
             % generate training data set
             [u_coarse_train,u_acc_train,phi_train] = obj.gen_data(N_Train,N_Disc,N_Smp);

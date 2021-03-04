@@ -1,4 +1,13 @@
-% 16/10/2020: generate the figures for Bayes linear ODE paper
+% generateFigs.m
+% 
+% Runs the analysis and generates the figures (4(a) and 4(b)) presented in
+% Section 5 of the manuscript 'Bayes Linear Analysis for Ordinary
+% Dfferential Equations'.
+%
+% ARTICLE AUTHORS: 
+% Matthew Jones, Michael Goldstein, David Randell, Philip Jonathan.
+% CODE AUTHOR:
+% Matthew Jones (@mjj89).
 
 clear
 close all
@@ -21,28 +30,34 @@ N_t = 50;
 t = [0;sort(L_t.*lhsdesign(N_t-1,1));L_t];
 Slv = Solver(L_t,N_t,t);
 
-% Numbers of samples etc. for fit
-N_Smp = 100;
-N_Disc = 500;
-N_Train = 500;
-N_Test = 100;
+% Control parameters for numerical discrepancy model fit (Section 4.1,
+% Appendix D):
+N_Disc = 500; % Number of refined grid cells for generating data for the numerical discrepancy model.
+N_Smp = 100; % Number of times the solution on the refined grid is sampled for numerical discrepancy model data generation.
+N_Train = 500; % Number of data points to be used for numerical discrepancy model fitting.
+N_Test = 100; % Number of data points to be used for numerical discrepancy model testing
 
 % Domains for model fits
-Slv.Dmn_gam = [0.1,2];
-Slv.Dmn_u0 = [0,0];
-Slv.Dmn_du0 = [10,50];
-Slv.Dmn_t = [0,8];
-Slv.Dmn_dt = [0.02,0.3];
-Slv.Dmn_u = [-10,10];
+% Specifies the domain used for generation of the Latin hypercube of inputs
+% used for discrepancy model fitting.
+Slv.Dmn_gam = [0.1,2];      % \gamma
+Slv.Dmn_u0 = [0,0];         % u(t_0)
+Slv.Dmn_du0 = [10,50];      % \dot{u}(t_0)
+Slv.Dmn_t = [0,8];          % t
+Slv.Dmn_dt = [0.02,0.3];    % h
 
 % set \lambda
-Slv.lam_eta.t = 1./(3^2);
-Slv.lam_eta.du0 = 1./(50^2);
-Slv.lam_eta.gam = 1./(0.2^2);
-Slv.lam_eta.u = 1./(50^2);
+% These are the correlation parameters for the squared exponential
+% correlation function \rho{}(.,.) defined in Section 5.1 of the article.
+Slv.lam_eta.t = 1./(3^2);       % t
+Slv.lam_eta.du0 = 1./(50^2);    % \dot{u}(t_0)
+Slv.lam_eta.gam = 1./(0.2^2);   % \gamma
+Slv.lam_eta.u = 1./(50^2);      % u
 
 %% Fit the discrepancy model using the supplied ranges
 
+% Fits the numerical discrepancy model, as described in Section 4.1 and
+% Appendix D of the article.
 Slv = Slv.fit_discrepancy_model(N_Smp,N_Disc,N_Train,N_Test);
 
 %% Generate the solver trajectories for the prior moments
@@ -66,6 +81,9 @@ sig = 1e-1;
 u(:,1) = 1e-4.*randn(N_u,1);
 
 %% Specify the DAG
+
+% Compute prior moments for the DAG specification, as described generally
+% in Section 3 of the article.
 
 % initialise
 Pa = cell(4*Slv.N_t+2,1);
@@ -206,10 +224,16 @@ G = DAG(Pa,E,Cov,Lbl,Z);
 
 %% Convert the DAG to a junction tree
 
+% Construction of a Junction tree class object, from the DAG object.
+% Converts the DAG to a junction tree using the procedure outlined in
+% Appendix B.3 of the article.
 J = JunctionTree(G);
 
-%% Observe trajectories for a number of different parameter specifications
-% Generaate the corresponding adjusted moments
+%% Trajectory observations and adjustments
+
+% Adjustment procedure described in detail in Section 5.2 of the article.
+% Adjustments for the trajecotries carried out in the function
+% JunctionTree.sequentialA
 
 % parameter values for real trajectories
 % \gamma
@@ -347,7 +371,9 @@ VarD_eta_J = [zeros(1,N_Case);VarD_eta_J];
 
 %% Plots of the results
 
-% Figure 1: plot the trajectory results
+%---------------------------------------------------
+% Figure 1: plot the prior and adjusted moments for the trajectory.
+% GENERATES FIGURE 4(a) IN THE ARTICLE
 figure(1)
 clf
 hold on
@@ -381,7 +407,9 @@ xlabel('Time (s)')
 ylabel('z(t) (m)')
 set(gca,'fontsize',14)
 
-% Figure 2: plot the 
+%---------------------------------------------------
+% Figure 2: plot the prior and adjusted moments of the model parameters.
+% GENERATES FIGURE 4(b) IN THE ARTICLE
 figure(2)
 clf
 hold on

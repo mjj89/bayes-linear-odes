@@ -1,5 +1,10 @@
 classdef DAG
     % DAG: properties and methods for a Bayes linear DAG
+    %
+    % Bayes linear directed graphical models introduced in Appendix B.1 of
+    % the article.
+    % Graphical model for the general ODE problem introduced in Section 3.2
+    % of the article.
     
     %% Properties
     properties
@@ -26,7 +31,12 @@ classdef DAG
     methods
         %% Constructor
         function obj = DAG(Pa,E,Cov,Lbl,Z)
-            % DAG: construct a DAG instance
+            % DAG: construct a DAG instance.
+            %
+            % Bayes linear directed graphical models introduced in Appendix B.1 of
+            % the article.
+            % Graphical model for the general ODE problem introduced in Section 3.2
+            % of the article.
             %
             % INPUTS:
             % - Pa: [n x 1] cell array: list of parents for each vertex in

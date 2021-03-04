@@ -18,8 +18,8 @@ Class for generating trajectories from both the real and numerical solutions to 
 Important functions:
 * `true_trajectory()`: evaluate the true ODE solution trajectory at the input times and parameter settings.
 * `simulate_trajetory()`: generate a set of simulations from the (first-order Euler) numerical solution to the ODE, with random numerical discrepancy contributions (if required).
-* `gen_data()`: generate a data set for use in fitting the numerical discrepancy model, using the procedure outlined in Section 4.1 and Appendix D of the manuscript.
-* `fit_discrepancy_model()`: obtain Bayes linear adjusted moments for the parameters and residual process of the numerical discrepancy model (Equation 7 of the manuscript).
+* `gen_data()`: generate a data set for use in fitting the numerical discrepancy model, using the procedure outlined in Section 4.1.1 and Appendix D of the manuscript.
+* `fit_discrepancy_model()`: obtain Bayes linear adjusted moments for the parameters and residual process of the numerical discrepancy model (Equation 7, Section 4.1.2 of the manuscript).
 
 ### DAG
 
