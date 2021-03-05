@@ -34,7 +34,7 @@ Important functions:
 Class to store properties of a second-order specification on an undirected graphical model, store details of the associated junction tree structure, and update moments by propagation of an adjustment through the cliques of the junction tree (as detailed in Appendix B of the manuscript).\
 Important functions:
 * `makeJTfromDAG()`: convert the DAG specification (as stored on a DAG class object) into a junction tree specification.
-* `sequentialAdjustment()`: adjust the moments stored on the junction tree given observations on particular nodes, by propagating the adjustment sequentially through the junction tree (see Appendix B of the manuscript for details).
+* `sequentialAdjustment()`: adjust the moments stored on the junction tree given observations on particular nodes, by propagating the adjustment sequentially through the junction tree (see Appendix B and Section 5.2 of the manuscript for details).
 
 ## Authors
 

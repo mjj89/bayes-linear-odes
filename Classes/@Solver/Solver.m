@@ -275,7 +275,7 @@ classdef Solver
             %   parameters.
             
             % generate data for initial prior setting
-            [u_coarse_pr,u_acc_pr,phi_pr] = obj.gen_data(N_Train,50,N_Smp);
+            [u_coarse_pr,u_acc_pr,phi_pr] = obj.gen_data(50,N_Disc,N_Smp);
             % generate training data set
             [u_coarse_train,u_acc_train,phi_train] = obj.gen_data(N_Train,N_Disc,N_Smp);
             % get the test data set
